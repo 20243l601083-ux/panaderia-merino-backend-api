@@ -1,0 +1,97 @@
+<ion-content class="seguimiento-content">
+  <header class="top-header">
+    <div class="brand">
+      <button type="button" class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
+      <div class="brand-mark">PM</div>
+      <div>
+        <p class="brand-subtitle">Desde 1980</p>
+        <h1 class="brand-title">Panadería Merino</h1>
+      </div>
+    </div>
+
+    <nav class="top-nav" [class.open]="showMenu">
+      <a routerLink="/home" class="nav-link" (click)="closeMenu()">Inicio</a>
+      <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+      <a routerLink="/carrito" class="nav-link" (click)="closeMenu()">Carrito</a>
+      <a routerLink="/pago" class="nav-link" (click)="closeMenu()">Pago</a>
+      <a routerLink="/seguimiento" class="nav-link active" (click)="closeMenu()">Seguimiento</a>
+      <a routerLink="/conocenos" class="nav-link" (click)="closeMenu()">Conócenos</a>
+      <a routerLink="/contacto" class="nav-link" (click)="closeMenu()">Contáctanos</a>
+      <a routerLink="/perfil" class="nav-link" (click)="closeMenu()">Perfil</a>
+    </nav>
+  </header>
+
+  <div class="page-wrap">
+    <section class="tracking-hero">
+      <div class="hero-title">
+        <p class="section-label">Rastreo en tiempo real</p>
+        <h1>Sigue tu pedido</h1>
+      </div>
+    </section>
+
+    <div class="tracking-grid">
+      <div class="map-container">
+        <div id="map" class="map-view"></div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-card">
+          <div class="demo-controls">
+            <button type="button" class="action-btn" (click)="simularRecorrido()">Simular recorrido</button>
+            <button type="button" class="action-btn secondary" (click)="usarMiUbicacion()">Usar mi ubicación</button>
+          </div>
+
+          <div class="status-banner">
+            <span class="status-pill">{{ status }}</span>
+            <p>Progreso: {{ progress }}%</p>
+            <p>Última actualización: {{ lastUpdate | date:'short' }}</p>
+          </div>
+
+          <h2>Estado del pedido</h2>
+
+          <div class="timeline">
+            <div class="timeline-item completed">
+              <div class="timeline-marker"><span class="marker-icon">✅</span></div>
+              <div class="timeline-content">
+                <h3>Pedido realizado con éxito</h3>
+                <p class="timeline-time">Ahora</p>
+              </div>
+            </div>
+
+            <div class="timeline-item completed">
+              <div class="timeline-marker"><span class="marker-icon">✅</span></div>
+              <div class="timeline-content">
+                <h3>El repartidor salió de la panadería</h3>
+                <p class="timeline-time">En ruta</p>
+              </div>
+            </div>
+
+            <div class="timeline-item active">
+              <div class="timeline-marker"><span class="marker-icon pulse">📦</span></div>
+              <div class="timeline-content">
+                <h3>Tu repartidor se aproxima a tu domicilio</h3>
+                <p class="timeline-time">{{ progress }}% completado</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-details">
+            <h3>Detalles del pedido</h3>
+            <div class="detail-item">
+              <span>Número de pedido:</span>
+              <strong>#ORD-{{ pedidoId }}</strong>
+            </div>
+            <div class="detail-item">
+              <span>Repartidor:</span>
+              <strong>{{ tracking?.driverName || 'Carlos López' }}</strong>
+            </div>
+            <div class="detail-item">
+              <span>Destino:</span>
+              <strong>{{ destinationPoint.lat | number:'1.4-4' }}, {{ destinationPoint.lng | number:'1.4-4' }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

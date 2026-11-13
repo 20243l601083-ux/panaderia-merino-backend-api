@@ -1,0 +1,38 @@
+<ion-content fullscreen class="register-content">
+  <div class="register-bg"></div>
+  <div class="register-wrap">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-mark">PM</div>
+        <div>
+          <p class="brand-subtitle">Únete</p>
+          <h2 class="brand-title">Crear cuenta en Merino</h2>
+        </div>
+      </div>
+
+      <form (ngSubmit)="submit()">
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="name" name="name" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+
+        <div class="actions">
+          <ion-button expand="block" type="submit">Crear cuenta</ion-button>
+        </div>
+
+        <p class="muted">Después de registrar, entrarás directo a la tienda.</p>
+        <p class="error" *ngIf="error">{{ error }}</p>
+      </form>
+    </div>
+  </div>
+</ion-content>

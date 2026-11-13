@@ -1,0 +1,33 @@
+<ion-header translucent>
+  <ion-toolbar color="light">
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ isEdit ? 'Editar' : 'Agregar' }} empleado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container">
+    <ion-item>
+      <ion-label position="floating">Nombre completo</ion-label>
+      <ion-input [(ngModel)]="formData.name" placeholder="Nombre del empleado"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Puesto</ion-label>
+      <ion-select [(ngModel)]="formData.role">
+        <ion-select-option *ngFor="let role of roles" [value]="role">
+          {{ role }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div class="form-actions">
+      <ion-button expand="block" (click)="save()" class="save-btn">
+        {{ isEdit ? 'Actualizar' : 'Guardar' }}
+      </ion-button>
+      <ion-button expand="block" fill="outline" (click)="cancel()">Cancelar</ion-button>
+    </div>
+  </div>
+</ion-content>

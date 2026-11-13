@@ -1,0 +1,392 @@
+<ion-content class="admin-section-page">
+
+  <div class="section-shell">
+
+    <div class="dashboard-grid">
+
+
+      <!-- SIDEBAR -->
+
+      <aside class="left-nav-card">
+
+
+        <div class="sidebar-logo-box">
+
+          <img 
+          src="assets/imagenes/logo1.jpeg" 
+          alt="Logo Panadería">
+
+        </div>
+
+
+
+        <h3>
+          Secciones
+        </h3>
+
+
+
+        <ion-list>
+
+
+          <!-- INICIO -->
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/dashboard"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <ion-label>
+              Inicio
+            </ion-label>
+
+          </ion-item>
+
+
+
+
+          <!-- CLIENTES -->
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/clientes"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <ion-label>
+              Clientes
+            </ion-label>
+
+          </ion-item>
+
+
+
+
+
+          <!-- PEDIDOS -->
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/pedidos"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <ion-label>
+              Pedidos
+            </ion-label>
+
+          </ion-item>
+
+
+
+
+
+          <!-- INVENTARIO -->
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/inventario"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <ion-label>
+              Inventario
+            </ion-label>
+
+          </ion-item>
+
+
+
+
+
+          <!-- EMPLEADOS -->
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/empleados"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <ion-label>
+              Empleados
+            </ion-label>
+
+          </ion-item>
+
+
+
+
+
+          <!-- REPARTIDORES -->
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/repartidores"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <ion-label>
+              Repartidores
+            </ion-label>
+
+          </ion-item>
+
+
+
+
+
+          <!-- GASTOS -->
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/gastos"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <ion-label>
+              Gastos
+            </ion-label>
+
+          </ion-item>
+
+
+        </ion-list>
+
+
+      </aside>
+
+
+
+      <!-- CONTENIDO PRINCIPAL -->
+
+
+      <div class="content-stack">
+
+
+
+        <!-- HERO -->
+
+
+        <section class="hero-card">
+
+
+          <div>
+
+
+            <p class="eyebrow">
+              Panel administrativo
+            </p>
+
+
+
+            <h1>
+              Inicio
+            </h1>
+
+
+
+            <p>
+              Consulta el resumen general de ventas,
+              pedidos y actividad de Panadería Merino.
+            </p>
+
+
+          </div>
+
+
+
+
+        </section>
+
+
+
+        <!-- TARJETAS RESUMEN -->
+
+
+        <div class="stats-grid">
+
+
+
+          <ion-card
+          class="stat-card"
+          *ngFor="let item of summary">
+
+
+
+            <ion-card-content>
+
+
+
+
+              <div class="stat-icon">
+
+                {{ item.icon }}
+
+              </div>
+
+
+
+
+
+              <p class="stat-label">
+
+                {{ item.label }}
+
+              </p>
+
+
+
+
+
+              <h2>
+
+                {{ item.value }}
+
+              </h2>
+
+
+
+
+
+              <span>
+
+                {{ item.hint }}
+
+              </span>
+
+
+
+            </ion-card-content>
+
+
+
+          </ion-card>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- GRÁFICA -->
+
+
+        <ion-card class="panel-card chart-card">
+
+
+
+          <ion-card-header>
+
+
+            <ion-card-title>
+
+              Gráfica de ventas mensuales
+
+            </ion-card-title>
+
+
+          </ion-card-header>
+
+
+
+
+
+
+          <ion-card-content>
+
+
+
+
+            <div class="chart-container">
+
+
+
+
+
+              <div
+              class="chart-column"
+              *ngFor="let venta of monthlySales; let i=index">
+
+
+
+
+
+                <div
+                class="chart-bar"
+                [style.height.%]="
+                  monthlySales.length > 0
+                  ? (venta / monthlySalesMax) * 100
+                  : 0
+                ">
+
+
+
+                  <strong>
+
+                    ${{ venta }}
+
+                  </strong>
+
+
+
+                </div>
+
+
+
+
+
+                <span>
+
+                  {{ months[i] }}
+
+                </span>
+
+
+
+              </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+          </ion-card-content>
+
+
+
+
+
+        </ion-card>
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+</ion-content>

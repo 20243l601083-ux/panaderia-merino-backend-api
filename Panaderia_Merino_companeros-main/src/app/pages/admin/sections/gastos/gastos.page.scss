@@ -1,0 +1,421 @@
+.admin-section-page {
+  --background: #fff8f1;
+}
+
+
+.section-shell {
+  padding: 2rem;
+}
+
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+}
+
+
+
+/* ==========================
+   MENU LATERAL
+========================== */
+
+
+.left-nav-card {
+
+  background: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  height: fit-content;
+
+}
+
+
+
+.sidebar-logo-box {
+
+  text-align: center;
+  margin-bottom: 1rem;
+
+}
+
+
+.sidebar-logo-box img {
+
+  width: 120px;
+  height: 120px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+}
+
+
+
+.left-nav-card h3 {
+
+  text-align: center;
+
+  color: #8b5a2b;
+
+  margin-bottom: 1rem;
+
+}
+
+
+
+.left-nav-item {
+
+  --background: transparent;
+
+  border-radius: 1rem;
+
+  margin-bottom: .5rem;
+
+  font-weight: 600;
+
+}
+
+
+
+.left-nav-item:hover {
+
+  --background: #fff0df;
+
+}
+
+
+
+.active-link {
+
+  --background: #d9a55f;
+
+  color:white;
+
+}
+
+
+
+.sidebar-image-box {
+
+  margin-top: 2rem;
+
+}
+
+
+.sidebar-image-box img {
+
+  width:100%;
+
+  border-radius:1rem;
+
+}
+
+
+
+
+
+
+/* ==========================
+ CONTENIDO
+========================== */
+
+
+.content-stack {
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:1.5rem;
+
+}
+
+
+
+
+.hero-card {
+
+  background:white;
+
+  padding:2rem;
+
+  border-radius:1.5rem;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+
+.eyebrow {
+
+  color:#d9a55f;
+
+  font-weight:bold;
+
+  text-transform:uppercase;
+
+  font-size:.85rem;
+
+}
+
+
+
+.hero-card h1 {
+
+  color:#8b5a2b;
+
+  font-family:'Playfair Display',serif;
+
+  font-size:2.5rem;
+
+}
+
+
+
+.hero-card p {
+
+  color:#666;
+
+}
+
+
+
+
+
+
+
+/* ==========================
+ TARJETAS
+========================== */
+
+
+.stats-grid {
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:1.5rem;
+
+}
+
+
+
+.stat-card {
+
+  border-radius:1.5rem;
+
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+
+
+.stat-label {
+
+  color:#8b5a2b;
+
+  font-weight:bold;
+
+}
+
+
+
+.stat-card h2 {
+
+  font-size:2rem;
+
+  color:#333;
+
+}
+
+
+
+.stat-card span {
+
+  color:#777;
+
+}
+
+
+
+
+
+
+/* ==========================
+ TABLA
+========================== */
+
+
+.panel-card {
+
+  border-radius:1.5rem;
+
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+
+.table-header {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+}
+
+
+
+ion-searchbar {
+
+  max-width:300px;
+
+}
+
+
+
+.table-wrap {
+
+  overflow-x:auto;
+
+}
+
+
+
+table {
+
+  width:100%;
+
+  border-collapse:collapse;
+
+}
+
+
+
+thead {
+
+  background:#fff0df;
+
+}
+
+
+
+th {
+
+  padding:1rem;
+
+  text-align:left;
+
+  color:#8b5a2b;
+
+}
+
+
+
+td {
+
+  padding:1rem;
+
+  border-bottom:1px solid #eee;
+
+}
+
+
+
+tr:hover {
+
+  background:#fff8f1;
+
+}
+
+
+
+
+
+
+/* ==========================
+ MODAL
+========================== */
+
+
+ion-modal {
+
+  --border-radius:1.5rem;
+
+}
+
+
+
+ion-item {
+
+  margin-bottom:1rem;
+
+  --border-radius:1rem;
+
+}
+
+
+
+ion-button {
+
+  --border-radius:1rem;
+
+}
+
+
+
+
+
+
+
+/* ==========================
+ RESPONSIVE
+========================== */
+
+
+@media(max-width:900px){
+
+
+.dashboard-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.hero-card{
+
+flex-direction:column;
+
+gap:1rem;
+
+align-items:flex-start;
+
+}
+
+
+}

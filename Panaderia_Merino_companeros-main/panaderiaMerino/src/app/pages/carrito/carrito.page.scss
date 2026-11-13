@@ -1,0 +1,371 @@
+
+.carrito-content {
+  --background: #f0e6d8;
+}
+
+:host {
+  display: block;
+}
+
+
+:host {
+  --color-primary: #8b5a2b;
+  --color-primary-dark: #6b4423;
+  --color-accent: #d9a55f;
+  --color-bg: #fff8f1;
+  --color-panel: #ffffff;
+  --color-text: #3e2311;
+  --color-text-soft: #7c5c42;
+  --color-border: rgba(182, 122, 78, 0.22);
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+  --radius: 1.5rem;
+}
+
+// HEADER & NAVIGATION
+
+.top-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: calc(100% + 36px);
+  left: -18px;
+  padding: 18px 18px 14px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 40px rgba(115, 75, 35, 0.12);
+  border-bottom: 1px solid rgba(139, 90, 43, 0.08);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menu-toggle {
+  border: none;
+  background: #ffffff;
+  color: #d97b4a;
+  font-size: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(217, 123, 74, 0.18);
+}
+
+.brand-mark {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #b07b48, #8b5a2b);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 18px 32px rgba(139, 90, 43, 0.18);
+}
+
+.brand-subtitle {
+  margin: 0;
+  color: #7d5a3e;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brand-title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+}
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(139, 90, 43, 0.16);
+  text-decoration: none;
+  color: #5f3f2a;
+  font-weight: 600;
+  font-size: 0.94rem;
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--color-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+// =====================
+// RESPONSIVE
+// =====================
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .top-nav {
+    width: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .top-header {
+    align-items: flex-start;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .top-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    box-shadow: 0 16px 30px rgba(121, 64, 17, 0.12);
+  }
+
+  .top-nav.open {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .top-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .top-nav {
+    gap: 8px;
+    grid-template-columns: 1fr;
+  }
+}
+/* CONTENEDOR GENERAL */
+.page-wrap {
+  padding: 30px;
+}
+
+/* HERO */
+.hero-summary {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero-label {
+  color: #9b6b43;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.hero-summary h1 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #4b2e1e;
+  margin-bottom: 10px;
+}
+
+.hero-summary p {
+  color: #6b5b4d;
+  font-size: 16px;
+}
+
+/* GRID */
+.cart-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+/* TARJETAS */
+.cart-card,
+.summary-card {
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  background: white;
+ padding: 12px;
+  border: 1px solid #eee;
+}
+
+/* ITEM */
+.item-card-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.item-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.item-details h3 {
+  margin: 0;
+  color: #4b2e1e;
+  font-size: 18px;
+}
+
+.item-price {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  color: #a06a42;
+  margin-top: 6px;
+}
+
+/* CONTROLES */
+.item-controls {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.qty-btn {
+  --background: #9b6b43;
+  --border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+}
+
+.qty-count {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4b2e1e;
+}
+
+.item-total {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #4b2e1e;
+  text-align: right;
+}
+
+/* RESUMEN */
+.summary-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.summary-head span {
+  font-size: 22px;
+  color: #4b2e1e;
+}
+
+.summary-head strong {
+  font-size: 28px;
+  color: #9b6b43;
+}
+
+.summary-copy p {
+  color: #6b5b4d;
+  line-height: 1.5;
+}
+
+/* TABLA */
+.summary-table {
+  margin-top: 25px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.header-row {
+  font-weight: bold;
+  color: #4b2e1e;
+}
+
+/* BOTÓN */
+.pay-btn {
+  margin-top: 25px;
+  --background: #9b6b43;
+  --border-radius: 18px;
+  height: 55px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* CARRITO VACÍO */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty-state h2 {
+  color: #4b2e1e;
+  font-size: 34px;
+}
+
+.empty-state p {
+  color: #6b5b4d;
+  margin: 20px 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+
+  .cart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .item-card-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: 220px;
+  }
+
+}

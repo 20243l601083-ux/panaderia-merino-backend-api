@@ -1,0 +1,203 @@
+<ion-content class="home-content">
+  <div class="page-wrap">
+    <header class="top-header">
+      <div class="brand">
+        <button type="button" class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
+        <div class="brand-mark">PM</div>
+        <div>
+          <p class="brand-subtitle">Desde 1980</p>
+          <h1 class="brand-title">Panadería Merino</h1>
+        </div>
+      </div>
+
+      <nav class="top-nav" [class.open]="showMenu">
+        <a routerLink="/home" class="nav-link active" (click)="closeMenu()">Inicio</a>
+        <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+        <a routerLink="/carrito" class="nav-link" (click)="closeMenu()">Carrito <span class="cart-badge" *ngIf="cartItems.length">{{ cartItems.length }}</span></a>
+        <a routerLink="/pago" class="nav-link" (click)="closeMenu()">Pago</a>
+        <a routerLink="/seguimiento" class="nav-link" (click)="closeMenu()">Seguimiento</a>
+        <a routerLink="/conocenos" class="nav-link" (click)="closeMenu()">Conócenos</a>
+        <a routerLink="/contacto" class="nav-link" (click)="closeMenu()">Contáctanos</a>
+        <a routerLink="/perfil" class="nav-link" (click)="closeMenu()">Perfil</a>
+      </nav>
+    </header>
+    <div class="floating-actions">
+      <a routerLink="/productos" class="fab-order">
+        <span class="fab-icon">🛒</span>
+        Ordenar ahora
+      </a>
+      <button type="button" class="cart-toggle" (click)="toggleCart()" aria-label="Abrir carrito">
+        <span class="icon">🛒</span>
+        <span class="cart-count" *ngIf="cartItems.length">{{ cartItems.length }}</span>
+      </button>
+    </div>
+
+    <div class="cart-backdrop" [class.visible]="showCart" (click)="closeCart()"></div>
+    <aside class="cart-drawer" [class.open]="showCart">
+      <div class="cart-header">
+        <div>
+          <p class="section-label">Tu carrito</p>
+          <h4>{{ cartItems.length ? (cartItems.length + ' artículos') : 'Carrito vacío' }}</h4>
+        </div>
+        <button type="button" class="close-drawer" (click)="closeCart()" aria-label="Cerrar carrito">×</button>
+      </div>
+      <div class="cart-items">
+        <div *ngIf="cartItems.length; else emptyCart">
+          <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+            <span class="item-icon">🥖</span>
+            <div>
+              <p>{{ item }}</p>
+              <small>1 unidad</small>
+            </div>
+            <span class="item-badge">+1</span>
+          </div>
+        </div>
+        <ng-template #emptyCart>
+          <p class="empty-message">Aún no hay nada en el carrito.</p>
+        </ng-template>
+      </div>
+      <button type="button" class="drawer-action" routerLink="/carrito" (click)="closeCart()">Ir al carrito</button>
+    </aside>
+
+    <section class="hero-section hero-banner">
+      <div class="hero-copy">
+        <span class="hero-label">Pan recién horneado</span>
+        <h1 class="hero-title">Pan fresco todos los días</h1>
+        <p class="hero-text">Directo del horno, con aroma cálido y textura suave. El pan que acompaña cada momento.</p>
+        <div class="hero-actions">
+          <a routerLink="/productos" class="btn-primary">Ordenar ahora</a>
+          <span class="hero-tag">Solo pan, 100% natural</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <img src="/assets/imagenes/fondo_pan_mexicano.jpg" alt="Pan recién horneado" loading="lazy" />
+        <div class="hero-smoke-group">
+          <span class="hero-smoke"></span>
+          <span class="hero-smoke smoke-two"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card offer-section">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Ofertas</p>
+          <h3 class="section-title">Ofertas destacadas de pan</h3>
+        </div>
+        <p class="section-note">Frescura y sabor en cada línea.</p>
+      </div>
+
+      <div class="carousel-wrap">
+        <button type="button" class="carousel-btn prev" (click)="prevOffer()">‹</button>
+        <div class="carousel" #carousel>
+              <article class="offer-card">
+            <div class="offer-media">
+              <img src="/assets/imagenes/bolillo.jpeg" alt="Bolillos frescos" />
+              <span class="offer-badge badge-3x2">3x2</span>
+            </div>
+            <div class="offer-content">
+              <h4>Bolillos frescos</h4>
+              <p>Llévate 3x2 en bolillos artesanales para tus desayunos.</p>
+              <button type="button" class="offer-action" (click)="addToCart('Bolillos frescos')">Agregar al carrito</button>
+            </div>
+          </article>
+
+          <article class="offer-card">
+            <div class="offer-media">
+              <img src="/assets/imagenes/four-small-french-baguettes-place-iron-pan.jpg" alt="Baguette rústica" loading="lazy" />
+              <span class="offer-badge badge-new">Nuevo</span>
+            </div>
+            <div class="offer-content">
+              <h4>Baguette rústica</h4>
+              <p>Pan artesanal con corteza dorada y miga esponjosa para tu mesa.</p>
+              <button type="button" class="offer-action" (click)="addToCart('Baguette rústica')">Agregar al carrito</button>
+            </div>
+          </article>
+
+          <article class="offer-card">
+            <div class="offer-media">
+              <img src="/assets/imagenes/high-angle-pan-de-muerto-dough.jpg" alt="Pan de muerto" loading="lazy" />
+              <span class="offer-badge badge-top">Top</span>
+            </div>
+            <div class="offer-content">
+              <h4>Pan de muerto</h4>
+              <p>Clásico y suave, con ese sabor que todos esperan en cada temporada.</p>
+              <button type="button" class="offer-action" (click)="addToCart('Pan de muerto')">Agregar al carrito</button>
+            </div>
+          </article>
+        </div>
+        <button type="button" class="carousel-btn next" (click)="nextOffer()">›</button>
+      </div>
+    </section>
+
+    <section class="tradition-section section-card">
+      <div class="tradition-card">
+        <div class="tradition-copy">
+          <p class="section-label">Tradición desde Coscomatepec</p>
+          <h3>Panadería Merino nace del horno de la familia</h3>
+          <p>Desde hace años trabajamos con ingredientes locales y recetas que reflejan la honestidad de nuestro pan.</p>
+        </div>
+        <div class="tradition-illustration">
+          <img src="/assets/imagenes/fondo_pan_mexicano.jpg" alt="Panadería Merino - tradición" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card highlight-section">
+      <div class="section-head">
+        <div>
+          <p class="section-label">Destacados</p>
+          <h3 class="section-title">Nuestros panes más pedidos</h3>
+        </div>
+      </div>
+      <div class="highlight-grid">
+        <article class="highlight-card">
+          <div class="highlight-media">
+            <img src="/assets/imagenes/donas-rellenas.webp" alt="Donas rellenas" loading="lazy" />
+          </div>
+          <h4>Donas rellenas</h4>
+          <p>Recién glaseadas y rellenas, el detalle perfecto para un antojo dulce.</p>
+        </article>
+        <article class="highlight-card">
+          <div class="highlight-media">
+            <img src="/assets/imagenes/budin.jpg" alt="Panqué tradicional" loading="lazy" />
+          </div>
+          <h4>Panqué tradicional</h4>
+          <p>Suave y húmedo, ideal para acompañar café o para compartir en familia.</p>
+        </article>
+        <article class="highlight-card">
+          <div class="highlight-media">
+            <img src="/assets/imagenes/pan-de-muerto.webp" alt="Canasta de pan" loading="lazy" />
+          </div>
+          <span class="highlight-badge">Oferta especial</span>
+          <h4>Canasta de fiesta</h4>
+          <p>10 panes mexicanos de temporada a precio especial, ideal para celebrar el Día de Muertos o feriados con sabor casero.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <div class="footer-grid">
+        <div class="footer-block">
+          <h4>Panadería Merino</h4>
+          <p>Pan recién horneado cada mañana desde Coscomatepec.</p>
+        </div>
+        <div class="footer-block">
+          <p><span class="footer-icon">📍</span> Calle 4 de Octubre, Coscomatepec, Ver</p>
+          <p><span class="footer-icon">📞</span> 271 260 73 85</p>
+          <p><span class="footer-icon">✉️</span> MerinoPanaderia@gmail.com</p>
+        </div>
+        <div class="footer-block footer-social">
+          <h4>Redes</h4>
+          <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="cart-feedback" *ngIf="showCartMessage">{{ cartMessage }}</div>
+  </div>
+</ion-content>

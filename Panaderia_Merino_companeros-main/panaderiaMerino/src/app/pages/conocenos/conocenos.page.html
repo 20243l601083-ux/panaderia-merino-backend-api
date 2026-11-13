@@ -1,0 +1,103 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-mark">PM</div>
+        <div>
+          <p class="brand-subtitle">Desde 1980</p>
+          <h1 class="brand-title">Panadería Merino</h1>
+        </div>
+      </div>
+
+      <nav class="top-nav" [class.open]="showMenu">
+        <a routerLink="/home" class="nav-link" (click)="closeMenu()">Inicio</a>
+        <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+        <a routerLink="/carrito" class="nav-link" (click)="closeMenu()">Carrito <span class="cart-badge" *ngIf="cartCount">{{ cartCount }}</span></a>
+        <a routerLink="/pago" class="nav-link" (click)="closeMenu()">Pago</a>
+        <a routerLink="/seguimiento" class="nav-link" (click)="closeMenu()">Seguimiento</a>
+        <a routerLink="/conocenos" class="nav-link active" (click)="closeMenu()">Conócenos</a>
+        <a routerLink="/contacto" class="nav-link" (click)="closeMenu()">Contáctanos</a>
+        <a routerLink="/perfil" class="nav-link" (click)="closeMenu()">Perfil</a>
+      </nav>
+    </header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="conocenos-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Conócenos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <section class="about-page">
+    <div class="hero-section">
+      <div class="hero-copy">
+        <h1>Desde 1988 horneando con amor</h1>
+
+        <div class="mini-hero-card" role="img" aria-label="Tienda y equipo de Panadería Merino">
+          <span class="card-label">Sobre nosotros</span>
+        </div>
+
+        <p>Somos una panadería artesanal con más de una década de experiencia, dedicada a ofrecer pan fresco y de calidad. Horneamos recetas tradicionales y ponemos mucho amor en cada horneada para que disfrutes del mejor sabor en cada bocado.</p>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <article class="story-card">
+        <h2>Nuestra Historia</h2>
+        <p>Somos una panadería artesanal con más de una década de experiencia, dedicada a ofrecer pan fresco y de calidad. Horneamos recetas tradicionales y ponemos mucho amor en cada horneada para que disfrutes del mejor sabor en cada bocado.</p>
+
+        <div class="mini-gallery">
+          <div class="mini-card">
+            <img src="/assets/imagenes/fondo_pan_veracruz.jpg" alt="Interior de la panadería" />
+            <p>Espacio acogedor</p>
+          </div>
+          <div class="mini-card">
+            <img src="/assets/imagenes/budin.jpg" alt="Repostería artesanal" />
+            <p>Repostería fresca</p>
+          </div>
+          <div class="mini-card">
+            <img src="/assets/imagenes/hojaldra.png" alt="Arte de la panadería" />
+            <p>Tradición y sabor</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="info-card">
+        <div class="contact-block">
+          <h3>Contacto</h3>
+          <p><strong>Dirección:</strong> Coscomatepec Ver, Calle 4 de Octubre</p>
+          <p><strong>Teléfono:</strong> 271 260 73 85</p>
+          <p><strong>Email:</strong> MerinoPanaderia@gmail.com</p>
+        </div>
+
+        <div class="social-block">
+          <h3>Redes sociales</h3>
+          <div class="social-links">
+            <a href="#" class="social-icon tiktok" aria-label="TikTok">TikTok</a>
+            <a href="#" class="social-icon facebook" aria-label="Facebook">Facebook</a>
+            <a href="#" class="social-icon instagram" aria-label="Instagram">Instagram</a>
+          </div>
+        </div>
+      </article>
+    </div>
+<!-- Footer uniforme -->
+<footer class="page-footer">
+  <div class="footer-grid">
+    <div class="footer-block">
+      <h4>Panadería Merino</h4>
+      <p><span class="footer-icon">📍</span> Coscomatepec Ver, Calle 4 de Octubre</p>
+      <p><span class="footer-icon">📞</span> 271 260 73 85</p>
+      <p><span class="footer-icon">✉️</span> MerinoPanaderia@gmail.com</p>
+    </div>
+    <div class="footer-block">
+      <h4>Síguenos</h4>
+      <div class="social-links">
+        <a href="#">TikTok</a>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>

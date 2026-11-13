@@ -1,0 +1,453 @@
+<ion-content class="admin-section-page">
+
+  <div class="section-shell">
+
+<div class="dashboard-grid">
+
+  <!-- MENÚ LATERAL -->
+  <aside class="left-nav-card">
+
+    <div class="sidebar-logo-box">
+      <img
+        src="assets/imagenes/logo1.jpeg"
+        alt="Logo Panadería">
+    </div>
+
+    <h3>Secciones</h3>
+
+    <ion-list>
+
+      <ion-item
+        class="left-nav-item"
+        routerLink="/admin/dashboard"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <ion-label>Inicio</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="left-nav-item"
+        routerLink="/admin/clientes"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <ion-label>Clientes</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="left-nav-item"
+        routerLink="/admin/pedidos"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <ion-label>Pedidos</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="left-nav-item"
+        routerLink="/admin/inventario"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <ion-label>Inventario</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="left-nav-item"
+        routerLink="/admin/empleados"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <ion-label>Empleados</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="left-nav-item"
+        routerLink="/admin/repartidores"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <ion-label>Repartidores</ion-label>
+      </ion-item>
+
+      <ion-item
+        class="left-nav-item"
+        routerLink="/admin/gastos"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <ion-label>Gastos</ion-label>
+      </ion-item>
+
+    </ion-list>
+
+  </aside>
+
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="content-stack">
+
+
+    <!-- ENCABEZADO -->
+    <section class="hero-card">
+
+      <div>
+
+        <p class="eyebrow">
+          Panel administrativo
+        </p>
+
+        <h1>
+          Repartidores
+        </h1>
+
+        <p>
+          Gestiona los repartidores registrados y su disponibilidad.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ESTADÍSTICAS -->
+    <div class="stats-grid">
+
+      <ion-card
+        class="stat-card"
+        *ngFor="let item of summary">
+
+        <ion-card-content>
+
+          <p class="stat-label">
+            {{ item.label }}
+          </p>
+
+          <h2>
+            {{ item.value }}
+          </h2>
+
+          <span>
+            {{ item.hint }}
+          </span>
+
+        </ion-card-content>
+
+      </ion-card>
+
+    </div>
+
+
+    <!-- TABLA -->
+    <ion-card class="panel-card">
+
+      <ion-card-header class="table-header">
+
+        <ion-card-title>
+          Lista de repartidores
+        </ion-card-title>
+
+        <ion-searchbar
+          [(ngModel)]="searchText"
+          placeholder="Buscar repartidor..."
+          show-clear-button="focus">
+        </ion-searchbar>
+
+      </ion-card-header>
+
+
+      <ion-card-content>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>ID</th>
+
+                <th>Nombre</th>
+
+                <th>Teléfono</th>
+
+                <th>Disponibilidad</th>
+
+                <th>Ubicación</th>
+
+                <th>Acciones</th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr
+                *ngFor="let repartidor of filteredRepartidores">
+
+                <!-- ID -->
+                <td>
+                  #{{ repartidor.id_repartidor }}
+                </td>
+
+
+                <!-- NOMBRE -->
+                <td>
+
+                  {{ repartidor.usuario?.nombre || 'Sin nombre' }}
+
+                </td>
+
+
+                <!-- TELÉFONO -->
+                <td>
+
+                  {{ repartidor.telefono || 'Sin teléfono' }}
+
+                </td>
+
+
+                <!-- DISPONIBILIDAD -->
+                <td>
+
+                  <span
+                    [class]="
+                      repartidor.disponibilidad === 'libre'
+                        ? 'status-badge status-free'
+                        : 'status-badge status-busy'
+                    ">
+
+                    {{
+                      repartidor.disponibilidad === 'libre'
+                        ? 'Libre'
+                        : 'Ocupado'
+                    }}
+
+                  </span>
+
+                </td>
+
+
+                <!-- UBICACIÓN -->
+                <td>
+
+                  <span
+                    *ngIf="
+                      repartidor.ubicacion_actual_lat !== null &&
+                      repartidor.ubicacion_actual_lat !== undefined &&
+                      repartidor.ubicacion_actual_lng !== null &&
+                      repartidor.ubicacion_actual_lng !== undefined
+                    ">
+
+                    {{ repartidor.ubicacion_actual_lat }},
+                    {{ repartidor.ubicacion_actual_lng }}
+
+                  </span>
+
+                  <span
+                    *ngIf="
+                      repartidor.ubicacion_actual_lat === null ||
+                      repartidor.ubicacion_actual_lat === undefined ||
+                      repartidor.ubicacion_actual_lng === null ||
+                      repartidor.ubicacion_actual_lng === undefined
+                    ">
+
+                    Sin ubicación
+
+                  </span>
+
+                </td>
+
+
+                <!-- ACCIONES -->
+                <td>
+
+                  <ion-button
+                    size="small"
+                    fill="clear"
+                    color="primary"
+                    (click)="openEdit(repartidor)">
+
+                    Editar
+
+                  </ion-button>
+
+
+                  <ion-button
+                    size="small"
+                    fill="clear"
+                    color="danger"
+                    (click)="deleteRepartidor(repartidor)">
+
+                    Eliminar
+
+                  </ion-button>
+
+                </td>
+
+              </tr>
+
+
+              <!-- SIN RESULTADOS -->
+              <tr
+                *ngIf="filteredRepartidores.length === 0">
+
+                <td
+                  colspan="6"
+                  class="empty-row">
+
+                  No hay repartidores registrados.
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- MODAL DE EDICIÓN -->
+
+<ion-modal
+[isOpen]="isModalOpen"
+(didDismiss)="cerrarModal()">
+
+<ng-template>
+
+  <ion-header>
+
+    <ion-toolbar>
+
+      <ion-title>
+        Editar repartidor
+      </ion-title>
+
+      <ion-buttons slot="end">
+
+        <ion-button
+          (click)="cerrarModal()">
+
+          Cerrar
+
+        </ion-button>
+
+      </ion-buttons>
+
+    </ion-toolbar>
+
+  </ion-header>
+
+
+  <ion-content class="ion-padding">
+
+
+    <!-- USUARIO -->
+    <ion-item>
+      <ion-label position="stacked">
+        Repartidor
+      </ion-label>
+
+      <ion-input
+        [value]="form.nombre_usuario"
+        readonly>
+      </ion-input>
+    </ion-item>
+
+
+    <!-- TELÉFONO -->
+    <ion-item>
+
+      <ion-label position="stacked">
+        Teléfono
+      </ion-label>
+
+      <ion-input
+        type="tel"
+        [(ngModel)]="form.telefono"
+        placeholder="Número telefónico">
+      </ion-input>
+
+    </ion-item>
+
+
+    <!-- DISPONIBILIDAD -->
+    <ion-item>
+
+      <ion-label position="stacked">
+        Disponibilidad
+      </ion-label>
+
+      <ion-select
+        [(ngModel)]="form.disponibilidad">
+
+        <ion-select-option value="libre">
+          Libre
+        </ion-select-option>
+
+        <ion-select-option value="ocupado">
+          Ocupado
+        </ion-select-option>
+
+      </ion-select>
+
+    </ion-item>
+
+
+    <!-- LATITUD -->
+    <ion-item>
+
+      <ion-label position="stacked">
+        Latitud
+      </ion-label>
+
+      <ion-input
+        type="number"
+        [(ngModel)]="form.ubicacion_actual_lat"
+        placeholder="Ej. 18.884320">
+      </ion-input>
+
+    </ion-item>
+
+
+    <!-- LONGITUD -->
+    <ion-item>
+
+      <ion-label position="stacked">
+        Longitud
+      </ion-label>
+
+      <ion-input
+        type="number"
+        [(ngModel)]="form.ubicacion_actual_lng"
+        placeholder="Ej. -96.925610">
+      </ion-input>
+
+    </ion-item>
+
+
+    <!-- GUARDAR -->
+    <ion-button
+      expand="block"
+      color="primary"
+      (click)="saveRepartidor()">
+
+      Guardar cambios
+
+    </ion-button>
+
+  </ion-content>
+
+</ng-template>
+
+  </ion-modal>
+
+</ion-content>

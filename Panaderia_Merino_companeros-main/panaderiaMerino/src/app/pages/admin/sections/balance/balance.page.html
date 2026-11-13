@@ -1,0 +1,146 @@
+<ion-content class="admin-section-page">
+  <div class="section-shell">
+    <div class="dashboard-grid">
+      <aside class="left-nav-card">
+        <div class="sidebar-logo-box">
+          <img src="assets/imagenes/logo1.jpeg" alt="Logo Panadería" />
+        </div>
+        <h3>Secciones</h3>
+
+<ion-list>
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/dashboard"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Dashboard</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/clientes"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Clientes</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/pedidos"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Pedidos</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/inventario"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Inventario</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/empleados"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Empleados</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/repartidores"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Repartidores</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/gastos"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Gastos</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/balance"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Balance</ion-label>
+  </ion-item>
+
+
+</ion-list>
+
+        <div class="sidebar-image-box">
+          <img src="assets/imagenes/horno_panaderia.png" alt="Panadería" />
+        </div>
+      </aside>
+
+      <div class="content-stack">
+        <section class="hero-card">
+          <div>
+            <p class="eyebrow">Panel administrativo</p>
+            <h1>Balance</h1>
+            <p>Consulta ventas, gastos y ganancias con filtros por día, semana o mes.</p>
+          </div>
+          <ion-button color="primary">+ Ver reporte</ion-button>
+        </section>
+
+        <div class="filter-row">
+          <ion-button fill="clear" [color]="period === 'dia' ? 'primary' : 'medium'" (click)="setPeriod('dia')">Día</ion-button>
+          <ion-button fill="clear" [color]="period === 'semana' ? 'primary' : 'medium'" (click)="setPeriod('semana')">Semana</ion-button>
+          <ion-button fill="clear" [color]="period === 'mes' ? 'primary' : 'medium'" (click)="setPeriod('mes')">Mes</ion-button>
+        </div>
+
+        <div class="stats-grid">
+          <ion-card class="stat-card">
+            <ion-card-content>
+              <p class="stat-label">Ventas totales</p>
+              <h2>${{ summary.ventas }}</h2>
+              <span>Periodo seleccionado</span>
+            </ion-card-content>
+          </ion-card>
+          <ion-card class="stat-card">
+            <ion-card-content>
+              <p class="stat-label">Gastos</p>
+              <h2>${{ summary.gastos }}</h2>
+              <span>Operación diaria</span>
+            </ion-card-content>
+          </ion-card>
+          <ion-card class="stat-card">
+            <ion-card-content>
+              <p class="stat-label">Ganancias</p>
+              <h2>${{ summary.ganancias }}</h2>
+              <span>Utilidad neta</span>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <ion-card class="panel-card">
+          <ion-card-header>
+            <ion-card-title>Resumen financiero</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="balance-list">
+              <div class="balance-item"><span>Ventas</span><strong>${{ summary.ventas }}</strong></div>
+              <div class="balance-item"><span>Gastos</span><strong>${{ summary.gastos }}</strong></div>
+              <div class="balance-item"><span>Ganancias</span><strong>${{ summary.ganancias }}</strong></div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

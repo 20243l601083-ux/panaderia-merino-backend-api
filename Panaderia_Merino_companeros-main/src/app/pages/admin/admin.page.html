@@ -1,0 +1,48 @@
+<div class="admin-page">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark">PM</div>
+        <div>
+          <h2>Panadería Merino</h2>
+          <p>Panel administrativo</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button
+          *ngFor="let section of sections"
+          type="button"
+          class="nav-item"
+          [class.active]="currentSection === section.id"
+          [routerLink]="['/admin', section.id]"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }"
+          (click)="selectSection(section.id)">
+          <span class="nav-icon">{{ section.icon }}</span>
+          <span>{{ section.label }}</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="logout-btn" type="button" (click)="logout()">
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <section class="admin-main-panel">
+      <header class="admin-topbar">
+        <div>
+          <p class="eyebrow">Administración</p>
+          <h1>{{ currentSectionLabel }}</h1>
+        </div>
+        <div class="topbar-pill">Vista web · Panel activo</div>
+      </header>
+
+      <div class="admin-page-content">
+        <ion-router-outlet></ion-router-outlet>
+      </div>
+    </section>
+  </div>
+</div>

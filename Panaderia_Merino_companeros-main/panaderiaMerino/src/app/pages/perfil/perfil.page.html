@@ -1,0 +1,118 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-mark">PM</div>
+        <div>
+          <p class="brand-subtitle">Desde 1980</p>
+          <h1 class="brand-title">Panadería Merino</h1>
+        </div>
+      </div>
+
+      <nav class="top-nav" [class.open]="showMenu">
+        <a routerLink="/home" class="nav-link" (click)="closeMenu()">Inicio</a>
+        <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+        <a routerLink="/carrito" class="nav-link" (click)="closeMenu()">Carrito <span class="cart-badge" *ngIf="cartCount">{{ cartCount }}</span></a>
+        <a routerLink="/pago" class="nav-link" (click)="closeMenu()">Pago</a>
+        <a routerLink="/seguimiento" class="nav-link" (click)="closeMenu()">Seguimiento</a>
+        <a routerLink="/conocenos" class="nav-link" (click)="closeMenu()">Conócenos</a>
+        <a routerLink="/contacto" class="nav-link" (click)="closeMenu()">Contáctanos</a>
+        <a routerLink="/perfil" class="nav-link active" (click)="closeMenu()">Perfil</a>
+      </nav>
+    </header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="perfil-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Perfil</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="profile-wrap">
+    <section class="profile-grid">
+      <div class="profile-summary-card">
+        <div class="avatar-bubble">{{ firstName.charAt(0) }}{{ lastName.charAt(0) }}</div>
+        <div>
+          <p class="profile-label">Perfil de usuario</p>
+          <h2>{{ firstName }} {{ lastName }}</h2>
+          <p>Aquí puedes revisar y editar tus datos principales sin tarjetas pesadas.</p>
+        </div>
+      </div>
+
+      <div class="profile-data-column">
+        <div class="section-title">
+          <h3>Información personal</h3>
+          <span>Editable</span>
+        </div>
+        <form class="profile-form" (ngSubmit)="saveProfile()">
+          <label>
+            <span>Nombre</span>
+            <input type="text" [(ngModel)]="firstName" name="firstName" />
+          </label>
+          <label>
+            <span>Apellidos</span>
+            <input type="text" [(ngModel)]="lastName" name="lastName" />
+          </label>
+          <label>
+            <span>Correo</span>
+            <input type="email" [(ngModel)]="email" name="email" />
+          </label>
+          <label>
+            <span>Teléfono</span>
+            <input type="tel" [(ngModel)]="phone" name="phone" />
+          </label>
+          <label>
+            <span>Municipio</span>
+            <input type="text" [(ngModel)]="municipality" name="municipality" />
+          </label>
+          <label>
+            <span>Colonia</span>
+            <input type="text" [(ngModel)]="neighborhood" name="neighborhood" />
+          </label>
+          <label>
+            <span>Dirección</span>
+            <input type="text" [(ngModel)]="address" name="address" />
+          </label>
+          <button type="submit" class="save-btn">Guardar cambios</button>
+          <p class="save-message" *ngIf="saveMessage">{{ saveMessage }}</p>
+        </form>
+      </div>
+
+      <div class="payment-data-column">
+        <div class="section-title">
+          <h3>Datos de pago</h3>
+          <button type="button" class="eye-toggle" (click)="toggleHidePayment()">
+            {{ hidePayment ? '👁️ Mostrar' : '🙈 Ocultar' }}
+          </button>
+        </div>
+        <div class="payment-field">
+          <span>Alias de la tarjeta</span>
+          <input type="text" [(ngModel)]="cardAlias" name="cardAlias" />
+        </div>
+        <div class="payment-field">
+          <span>Número de tarjeta</span>
+          <input [type]="hidePayment ? 'password' : 'text'" [(ngModel)]="cardNumber" name="cardNumber" />
+        </div>
+        <div class="payment-field-inline">
+          <div>
+            <span>CVC</span>
+            <input [type]="hidePayment ? 'password' : 'text'" [(ngModel)]="cvc" name="cvc" />
+          </div>
+          <div>
+            <span>Fecha de vencimiento</span>
+            <input [type]="hidePayment ? 'password' : 'text'" [(ngModel)]="expiry" name="expiry" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© Panadería Merino — Horneando con amor desde 1988.</p>
+        <p>Dirección: Coscomatepec Ver, Calle 4 de Octubre · Tel: 271 260 73 85</p>
+      </div>
+    </footer>
+  </div>
+</ion-content>

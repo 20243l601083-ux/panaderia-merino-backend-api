@@ -1,0 +1,360 @@
+<ion-content class="admin-section-page">
+
+  <div class="section-shell">
+
+    <div class="dashboard-grid">
+
+      <!-- MENÚ LATERAL -->
+      <aside class="left-nav-card">
+
+        <div class="sidebar-logo-box">
+          <img
+            src="assets/imagenes/logo1.jpeg"
+            alt="Logo Panadería">
+        </div>
+
+        <h3>Secciones</h3>
+
+        <ion-list>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/dashboard"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Inicio</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/clientes"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Clientes</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/pedidos"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Pedidos</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/inventario"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Inventario</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/empleados"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Empleados</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/repartidores"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Repartidores</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/gastos"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Gastos</ion-label>
+          </ion-item>
+
+        </ion-list>
+
+        <div class="sidebar-image-box">
+          <img
+            src="assets/imagenes/horno_panaderia.png"
+            alt="Panadería">
+        </div>
+
+      </aside>
+
+
+      <!-- CONTENIDO PRINCIPAL -->
+      <div class="content-stack">
+
+        <!-- ENCABEZADO -->
+        <section class="hero-card">
+
+          <div>
+
+            <p class="eyebrow">
+              Panel administrativo
+            </p>
+
+            <h1>
+              Gastos
+            </h1>
+
+            <p>
+              Administra los gastos operativos de la panadería.
+            </p>
+
+          </div>
+
+          <ion-button
+            color="primary"
+            (click)="openCreate()">
+
+            + Agregar gasto
+
+          </ion-button>
+
+        </section>
+
+
+        <!-- ESTADÍSTICAS -->
+        <div class="stats-grid">
+
+          <ion-card class="stat-card">
+
+            <ion-card-content>
+
+              <p class="stat-label">
+                Gastos registrados
+              </p>
+
+              <h2>
+                {{ gastos.length }}
+              </h2>
+
+              <span>
+                Total de movimientos
+              </span>
+
+            </ion-card-content>
+
+          </ion-card>
+
+
+          <ion-card class="stat-card">
+
+            <ion-card-content>
+
+              <p class="stat-label">
+                Total gastado
+              </p>
+
+              <h2>
+                ${{ totalGastos }}
+              </h2>
+
+              <span>
+                Gastos acumulados
+              </span>
+
+            </ion-card-content>
+
+          </ion-card>
+
+        </div>
+
+
+        <!-- TABLA -->
+        <ion-card class="panel-card">
+
+          <ion-card-header class="table-header">
+
+            <ion-card-title>
+              Lista de gastos
+            </ion-card-title>
+
+            <ion-searchbar
+              [(ngModel)]="searchText"
+              placeholder="Buscar gasto..."
+              show-clear-button="focus">
+            </ion-searchbar>
+
+          </ion-card-header>
+
+
+          <ion-card-content>
+
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+
+                  </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                  <tr
+                    *ngFor="let gasto of gastosFiltrados">
+
+                    <td>
+                      #{{ gasto.id_gasto }}
+                    </td>
+
+                    <td>
+                      {{ gasto.descripcion || 'Sin descripción' }}
+                    </td>
+
+                    <td>
+                      ${{ gasto.monto }}
+                    </td>
+
+                    <td>
+                      {{ gasto.fecha_gasto | date:'yyyy-MM-dd' }}
+                    </td>
+
+                    <td>
+
+                      <ion-button
+                        size="small"
+                        fill="clear"
+                        color="primary"
+                        (click)="openEdit(gasto)">
+
+                        Editar
+
+                      </ion-button>
+
+                      <ion-button
+                        size="small"
+                        fill="clear"
+                        color="danger"
+                        (click)="deleteGasto(gasto.id_gasto)">
+
+                        Eliminar
+
+                      </ion-button>
+
+                    </td>
+
+                  </tr>
+
+
+                  <tr
+                    *ngIf="gastosFiltrados.length === 0">
+
+                    <td
+                      colspan="5"
+                      class="empty-row">
+
+                      No hay gastos registrados.
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </ion-card-content>
+
+        </ion-card>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- MODAL -->
+  <ion-modal
+    [isOpen]="isModalOpen">
+
+    <ng-template>
+
+      <ion-header>
+
+        <ion-toolbar>
+
+          <ion-title>
+            {{ editing ? 'Editar gasto' : 'Nuevo gasto' }}
+          </ion-title>
+
+          <ion-buttons slot="end">
+
+            <ion-button
+              (click)="isModalOpen = false">
+
+              Cerrar
+
+            </ion-button>
+
+          </ion-buttons>
+
+        </ion-toolbar>
+
+      </ion-header>
+
+
+      <ion-content class="ion-padding">
+
+        <ion-item>
+
+          <ion-label position="stacked">
+            Descripción
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="form.descripcion"
+            placeholder="Descripción del gasto">
+          </ion-input>
+
+        </ion-item>
+
+
+        <ion-item>
+
+          <ion-label position="stacked">
+            Monto
+          </ion-label>
+
+          <ion-input
+            type="number"
+            [(ngModel)]="form.monto"
+            placeholder="Ej. 35">
+          </ion-input>
+
+        </ion-item>
+
+
+        <ion-button
+          expand="block"
+          color="primary"
+          (click)="saveGasto()">
+
+          {{ editing ? 'Guardar cambios' : 'Guardar gasto' }}
+
+        </ion-button>
+
+      </ion-content>
+
+    </ng-template>
+
+  </ion-modal>
+
+</ion-content>

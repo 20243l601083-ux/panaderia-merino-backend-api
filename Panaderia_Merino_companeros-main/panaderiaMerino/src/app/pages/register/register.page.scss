@@ -1,0 +1,103 @@
+.register-content {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8e0b6 0%, #f9e0c6 50%, #f5c597 100%);
+}
+
+.register-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.9), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(255,255,255,0.7), transparent 22%);
+}
+
+.register-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 28px 16px 36px;
+}
+
+.auth-card {
+  background: linear-gradient(180deg, #fffaf6, #fff3ea);
+  padding: 36px;
+  border-radius: 20px;
+  box-shadow: 0 16px 32px rgba(139,90,43,0.15);
+  text-align: center;
+}
+
+.brand { 
+  display: flex;
+  gap: 14px; 
+  align-items: center; 
+  margin-bottom: 20px; 
+}
+
+.brand-mark { 
+  width: 58px; 
+  height: 58px; 
+  border-radius: 18px;
+  background: linear-gradient(135deg,#f08c34,#c1582b); 
+  color: #fff; 
+  display: grid; 
+  place-items: center; 
+  font-weight: 800;
+  font-size: 1.2rem; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+ }
+ 
+.brand-subtitle { 
+  margin: 0; 
+  color: #b35e2d; 
+  font-size: 0.85rem; 
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+ }
+
+.brand-title { 
+  margin: 4px 0 0; 
+  font-size: 1.9rem; 
+  color: #4f2b16; 
+  font-weight: 700;
+}
+
+/* Inputs */
+ion-item {
+  --background: #fffaf6;
+  --color: #5a3e1b;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+ion-label {
+  color: #8b5a2b;
+}
+ion-input {
+  color: #5a3e1b;
+}
+
+.actions ion-button {
+  --background: linear-gradient(135deg, #b07b48, #8b5a2b);
+  --color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+actions { margin-top: 18px; display: grid; gap: 12px; }
+.muted {
+  color: #6b4f2a;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+.error {
+  color: #b00020;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 560px) {
+  .register-wrap { padding: 18px 12px 28px; }
+  .auth-card { padding: 22px; }
+}

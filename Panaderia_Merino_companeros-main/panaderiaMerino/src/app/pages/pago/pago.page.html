@@ -1,0 +1,291 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <header class="top-header">
+
+      <div class="brand">
+
+        <div class="brand-mark">
+          PM
+        </div>
+
+        <div>
+          <p class="brand-subtitle">
+            Desde 1980
+          </p>
+
+          <h1 class="brand-title">
+            Panadería Merino
+          </h1>
+        </div>
+
+      </div>
+
+      <nav class="top-nav" [class.open]="showMenu">
+
+        <a
+          routerLink="/home"
+          class="nav-link"
+          (click)="closeMenu()">
+          Inicio
+        </a>
+
+        <a
+          routerLink="/productos"
+          class="nav-link"
+          (click)="closeMenu()">
+          Productos
+        </a>
+
+        <a
+          routerLink="/carrito"
+          class="nav-link"
+          (click)="closeMenu()">
+
+          Carrito
+
+          <span
+            class="cart-badge"
+            *ngIf="cartCount">
+            {{ cartCount }}
+          </span>
+
+        </a>
+
+        <a
+          routerLink="/pago"
+          class="nav-link active"
+          (click)="closeMenu()">
+          Pago
+        </a>
+
+        <a
+          routerLink="/seguimiento"
+          class="nav-link"
+          (click)="closeMenu()">
+          Seguimiento
+        </a>
+
+        <a
+          routerLink="/conocenos"
+          class="nav-link"
+          (click)="closeMenu()">
+          Conócenos
+        </a>
+
+        <a
+          routerLink="/contacto"
+          class="nav-link"
+          (click)="closeMenu()">
+          Contáctanos
+        </a>
+
+        <a
+          routerLink="/perfil"
+          class="nav-link"
+          (click)="closeMenu()">
+          Perfil
+        </a>
+
+      </nav>
+
+    </header>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  [fullscreen]="true"
+  class="pago-content">
+
+  <ion-header collapse="condense">
+
+    <ion-toolbar>
+
+      <ion-title size="large">
+        Método de pago
+      </ion-title>
+
+    </ion-toolbar>
+
+  </ion-header>
+
+  <div class="payment-shell">
+    <div class="payment-layout">
+
+      <div class="form-side">
+
+        <div class="payment-card">
+
+          <div class="payment-eyebrow">
+            Panadería Merino
+          </div>
+
+          <h2>
+            ¿Cómo deseas pagar?
+          </h2>
+
+          <p class="payment-description">
+            Elige una opción para continuar con tu pedido.
+          </p>
+
+          <div class="payment-options">
+
+            <button
+              type="button"
+              class="payment-option"
+              [class.selected]="selectedMethod === 'MercadoPago'"
+              (click)="seleccionarMetodo('MercadoPago')">
+
+              <div class="payment-option-icon">
+                💳
+              </div>
+
+              <div class="payment-option-info">
+
+                <strong>
+                  Mercado Pago
+                </strong>
+
+                <span>
+                  Pago en línea de forma segura.
+                </span>
+
+              </div>
+
+              <div class="payment-option-check">
+                {{ selectedMethod === 'MercadoPago' ? '✓' : '' }}
+              </div>
+
+            </button>
+
+            <button
+              type="button"
+              class="payment-option"
+              [class.selected]="selectedMethod === 'Presencial'"
+              (click)="seleccionarMetodo('Presencial')">
+
+              <div class="payment-option-icon">
+                🏪
+              </div>
+
+              <div class="payment-option-info">
+
+                <strong>
+                  Pago presencial
+                </strong>
+
+                <span>
+                  Paga directamente en la panadería o al recibir tu pedido.
+                </span>
+
+              </div>
+
+              <div class="payment-option-check">
+                {{ selectedMethod === 'Presencial' ? '✓' : '' }}
+              </div>
+
+            </button>
+
+          </div>
+
+          <div class="address-section">
+
+            <h3>
+              Dirección de entrega
+            </h3>
+
+            <ion-item class="address-input">
+
+              <ion-label position="floating">
+                ¿Dónde entregaremos tu pedido?
+              </ion-label>
+
+              <ion-input
+                [(ngModel)]="address"
+                name="address"
+                type="text">
+              </ion-input>
+
+            </ion-item>
+
+          </div>
+
+          <p
+            class="error-message"
+            *ngIf="errorMessage">
+
+            {{ errorMessage }}
+
+          </p>
+
+          <div class="payment-actions">
+
+            <ion-button
+              *ngIf="selectedMethod === 'MercadoPago'"
+              expand="block"
+              class="pay-btn mercado-btn"
+              [disabled]="processing"
+              (click)="pagarConMercadoPago()">
+
+              {{ processing
+                ? 'Conectando con Mercado Pago...'
+                : 'Pagar con Mercado Pago'
+              }}
+
+            </ion-button>
+
+            <ion-button
+              *ngIf="selectedMethod === 'Presencial'"
+              expand="block"
+              class="pay-btn presencial-btn"
+              [disabled]="processing"
+              (click)="pagarPresencialmente()">
+
+              {{ processing
+                ? 'Registrando pedido...'
+                : 'Confirmar pedido'
+              }}
+
+            </ion-button>
+
+          </div>
+
+          <p
+            class="select-message"
+            *ngIf="!selectedMethod">
+
+            Selecciona un método de pago para continuar.
+
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="illustration-side">
+
+        <div class="illustration-card">
+          <img
+            src="/assets/imagenes/tarjetas-icono.png"
+            alt="Métodos de pago">
+
+          <div class="illustration-text">
+
+            <h3>
+              Tu compra, fácil y segura
+            </h3>
+
+            <p>
+              Elige la forma de pago que mejor se adapte a ti.
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

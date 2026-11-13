@@ -1,0 +1,35 @@
+<ion-content class="login-content">
+  <div class="login-wrap">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-mark">PM</div>
+        <div>
+          <p class="brand-subtitle">Bienvenido</p>
+          <h2 class="brand-title">Inicia sesión</h2>
+        </div>
+      </div>
+
+      <form (ngSubmit)="submit()">
+        <ion-item>
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+        </ion-item>
+
+        <div class="actions">
+          <ion-button expand="block" type="submit">Entrar</ion-button>
+          <ion-button fill="outline" expand="block" (click)="goRegister()">Crear cuenta</ion-button>
+        </div>
+
+        <p class="muted">
+          Usa <strong>admin@merino.local</strong> / <strong>admin123</strong> para entrar como administrador
+        </p>
+        <p class="error" *ngIf="error">{{ error }}</p>
+      </form>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,287 @@
+<ion-content class="admin-section-page">
+
+  <div class="section-shell">
+
+    <div class="dashboard-grid">
+
+
+      <!-- SIDEBAR -->
+      <aside class="left-nav-card">
+
+        <div class="sidebar-logo-box">
+          <img src="assets/imagenes/logo1.jpeg" alt="Logo Panadería">
+        </div>
+
+
+        <h3>Secciones</h3>
+
+<ion-list>
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/dashboard"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Dashboard</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/clientes"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Clientes</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/pedidos"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Pedidos</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/inventario"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Inventario</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/empleados"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Empleados</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/repartidores"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Repartidores</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/gastos"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Gastos</ion-label>
+  </ion-item>
+
+
+</ion-list>
+      </aside>
+
+
+
+
+
+      <!-- CONTENIDO PRINCIPAL -->
+      <div class="content-stack">
+
+
+
+        <!-- CABECERA -->
+        <section class="hero-card">
+
+
+          <div>
+
+            <p class="eyebrow">
+              Panel administrativo
+            </p>
+
+
+            <h1>
+              Dashboard
+            </h1>
+
+
+            <p>
+              Resumen elegante de ventas, pedidos y actividad del día para tu panadería.
+            </p>
+
+
+          </div>
+
+
+
+          <ion-button color="primary">
+
+            Resumen diario
+
+          </ion-button>
+
+
+
+        </section>
+
+
+
+
+
+
+        <!-- TARJETAS RESUMEN -->
+
+        <div class="stats-grid">
+
+
+          <ion-card 
+          class="stat-card"
+          *ngFor="let item of summary">
+
+
+            <ion-card-content>
+
+
+              <div class="stat-icon">
+
+                {{item.icon}}
+
+              </div>
+
+
+
+              <p class="stat-label">
+
+                {{item.label}}
+
+              </p>
+
+
+
+
+              <h2>
+
+                {{item.value}}
+
+              </h2>
+
+
+
+
+              <span>
+
+                {{item.hint}}
+
+              </span>
+
+
+
+            </ion-card-content>
+
+
+          </ion-card>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- GRAFICA -->
+
+        <ion-card class="panel-card chart-card">
+
+
+          <ion-card-header>
+
+            <ion-card-title>
+
+              Gráfica de ventas mensuales
+
+            </ion-card-title>
+
+
+          </ion-card-header>
+
+
+
+
+          <ion-card-content>
+
+
+
+            <div class="chart-container">
+
+
+
+              <div 
+              class="chart-column"
+              *ngFor="let venta of monthlySales; let i=index">
+
+
+
+                <div 
+                class="chart-bar"
+                [style.height.%]="
+                monthlySales.length > 0 
+                ? (venta / monthlySalesMax) * 100 
+                : 0
+                ">
+
+
+                  <strong>
+
+                    ${{venta}}
+
+                  </strong>
+
+
+                </div>
+
+
+
+
+                <span>
+
+                  {{months[i]}}
+
+                </span>
+
+
+
+              </div>
+
+
+
+            </div>
+
+
+
+          </ion-card-content>
+
+
+
+        </ion-card>
+
+
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+
+</ion-content>

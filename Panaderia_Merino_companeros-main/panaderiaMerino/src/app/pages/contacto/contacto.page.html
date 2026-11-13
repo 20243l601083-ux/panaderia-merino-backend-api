@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-mark">PM</div>
+        <div>
+          <p class="brand-subtitle">Desde 1980</p>
+          <h1 class="brand-title">Panadería Merino</h1>
+        </div>
+      </div>
+
+      <nav class="top-nav" [class.open]="showMenu">
+        <a routerLink="/home" class="nav-link" (click)="closeMenu()">Inicio</a>
+        <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+        <a routerLink="/carrito" class="nav-link" (click)="closeMenu()">Carrito <span class="cart-badge" *ngIf="cartItems.length">{{ cartItems.length }}</span></a>
+        <a routerLink="/pago" class="nav-link" (click)="closeMenu()">Pago</a>
+        <a routerLink="/seguimiento" class="nav-link" (click)="closeMenu()">Seguimiento</a>
+        <a routerLink="/conocenos" class="nav-link" (click)="closeMenu()">Conócenos</a>
+        <a routerLink="/contacto" class="nav-link active" (click)="closeMenu()">Contáctanos</a>
+        <a routerLink="/perfil" class="nav-link" (click)="closeMenu()">Perfil</a>
+      </nav>
+    </header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="contacto-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Contáctanos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <section class="contact-page">
+    <div class="page-intro">
+      <span class="section-label">Contáctanos</span>
+      <h2>Estamos cerca de ti, en cada momento del día.</h2>
+      <p>Envía tu mensaje y con gusto te ayudaremos con pedidos, horarios y sabores.</p>
+    </div>
+
+    <div class="contact-grid">
+      <article class="contact-info">
+        <h3>Información de contacto</h3>
+        <div class="info-list">
+          <div class="info-block">
+            <p class="info-title">Teléfono</p>
+            <p class="info-text">271 206 7385</p>
+          </div>
+          <div class="info-block">
+            <p class="info-title">Dirección</p>
+            <p class="info-text">Coscomatepec Ver. Calle 4 de octubre</p>
+          </div>
+          <div class="info-block">
+            <p class="info-title">Horario</p>
+            <p class="info-text">Lunes a Sábado 9:00am - 10:00pm</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="contact-form-card">
+        <div class="form-header">
+          <p class="form-label">Escríbenos</p>
+          <h3>Tu mensaje importa</h3>
+        </div>
+
+        <form (ngSubmit)="submitMessage()" #contactForm="ngForm" class="contact-form">
+          <label class="field-group">
+            <span>Nombre</span>
+            <input type="text" name="name" [(ngModel)]="name" placeholder="Ej. Adolfo Rivera" required />
+          </label>
+
+          <label class="field-group">
+            <span>Correo</span>
+            <input type="email" name="email" [(ngModel)]="email" placeholder="Ej. adolfoR@gmail.com" required />
+          </label>
+
+          <label class="field-group textarea-group">
+            <span>Mensaje</span>
+            <textarea name="message" [(ngModel)]="message" placeholder="Redactar mensaje..." rows="6" required></textarea>
+          </label>
+
+          <button type="submit" class="submit-btn" [disabled]="!name || !email || !message">Enviar</button>
+          <p class="submit-note" *ngIf="submitted">Gracias por escribirnos. Muy pronto te responderemos.</p>
+        </form>
+      </article>
+    </div>
+  </section>
+</ion-content>

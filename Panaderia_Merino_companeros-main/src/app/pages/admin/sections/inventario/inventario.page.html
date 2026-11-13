@@ -1,0 +1,173 @@
+<ion-content class="admin-section-page">
+  <div class="section-shell">
+    <div class="dashboard-grid">
+      <aside class="left-nav-card">
+        <div class="sidebar-logo-box">
+          <img src="assets/imagenes/logo1.jpeg" alt="Logo Panadería" />
+        </div>
+        <h3>Secciones</h3>
+
+        <ion-list>
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/dashboard"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Dashboard</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/clientes"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Clientes</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/pedidos"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Pedidos</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/inventario"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Inventario</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/empleados"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Empleados</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/repartidores"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Repartidores</ion-label>
+  </ion-item>
+
+
+  <ion-item
+    class="left-nav-item"
+    routerLink="/admin/gastos"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }">
+    <ion-label>Gastos</ion-label>
+  </ion-item>
+  
+</ion-list>
+
+        <div class="sidebar-image-box">
+          <img src="assets/imagenes/horno_panaderia.png" alt="Panadería" />
+        </div>
+      </aside>
+
+      <div class="content-stack">
+        <section class="hero-card">
+          <div>
+            <p class="eyebrow">Panel administrativo</p>
+            <h1>Inventario</h1>
+            <p>Controla el stock con una tabla simple para registrar y actualizar productos.</p>
+          </div>
+          <ion-button color="primary" (click)="openCreate()">+ Agregar Producto</ion-button>
+        </section>
+
+        <div class="stats-grid">
+          <ion-card class="stat-card" *ngFor="let item of summary">
+            <ion-card-content>
+              <p class="stat-label">{{ item.label }}</p>
+              <h2>{{ item.value }}</h2>
+              <span>{{ item.hint }}</span>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <ion-card class="panel-card">
+          <ion-card-header class="table-header">
+            <ion-card-title>Stock de productos</ion-card-title>
+            <ion-searchbar [(ngModel)]="searchText" placeholder="Buscar..."></ion-searchbar>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let producto of filteredProductos">
+                    <td>#{{ producto.id }}</td>
+                    <td>{{ producto.producto }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>
+                      <ion-button size="small" fill="clear" color="primary" (click)="openEdit(producto)">Editar</ion-button>
+                      <ion-button size="small" fill="clear" color="danger" (click)="deleteProducto(producto)">Eliminar</ion-button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="isModalOpen = false">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ editingIndex === null ? 'Agregar producto' : 'Editar producto' }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="isModalOpen = false">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">Producto</ion-label>
+          <ion-input [(ngModel)]="form.producto" name="producto"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Categoría</ion-label>
+          <ion-input [(ngModel)]="form.categoria" name="categoria"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Precio</ion-label>
+          <ion-input [(ngModel)]="form.precio" name="precio"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Cantidad</ion-label>
+          <ion-input [(ngModel)]="form.cantidad" name="cantidad"></ion-input>
+        </ion-item>
+        <div class="modal-actions">
+          <ion-button expand="block" color="primary" (click)="saveProducto()">Guardar</ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

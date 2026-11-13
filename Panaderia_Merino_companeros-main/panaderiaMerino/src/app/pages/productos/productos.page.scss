@@ -1,0 +1,349 @@
+ion-content.productos-page {
+  --background: #f0e6d8;
+  min-height: 100vh;
+  padding: 16px 0 32px;
+}
+
+:host {
+  display: block;
+}
+
+
+:host {
+  --color-primary: #8b5a2b;
+  --color-primary-dark: #6b4423;
+  --color-accent: #d9a55f;
+  --color-bg: #fff8f1;
+  --color-panel: #ffffff;
+  --color-text: #3e2311;
+  --color-text-soft: #7c5c42;
+  --color-border: rgba(182, 122, 78, 0.22);
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+  --radius: 1.5rem;
+}
+.page-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 24px 36px;
+}
+
+.top-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: calc(100% + 36px);
+  left: -18px;
+  padding: 18px 18px 14px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 40px rgba(115, 75, 35, 0.12);
+  border-bottom: 1px solid rgba(139, 90, 43, 0.08);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menu-toggle {
+  border: none;
+  background: #ffffff;
+  color: #d97b4a;
+  font-size: 22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(217, 123, 74, 0.18);
+}
+
+.brand-mark {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #b07b48, #8b5a2b);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 18px 32px rgba(139, 90, 43, 0.18);
+}
+
+.brand-subtitle {
+  margin: 0;
+  color: #7d5a3e;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.brand-title {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+}
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  width: auto;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(139, 90, 43, 0.16);
+  text-decoration: none;
+  color: #5f3f2a;
+  font-weight: 600;
+  font-size: 0.94rem;
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--color-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.hero-section {
+  padding: 32px 30px 10px;
+  text-align: center;
+}
+
+.hero-copy {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.hero-copy .subtitle {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #8e6446;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 4.2vw, 4.2rem);
+  line-height: 1.05;
+  color: #d97b4a;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero-copy p {
+  margin: 18px auto 0;
+  max-width: 520px;
+  color: #5e4737;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(260px, 1fr) );
+  gap: 24px;
+  padding: 0 28px 40px;
+}
+
+.producto-card {
+  border-radius: 28px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 18px 42px rgba(99, 63, 38, 0.12);
+  border: 1px solid rgba(204, 173, 141, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(99, 63, 38, 0.18);
+}
+
+.card-image {
+  background: #f8efe5;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+.card-body {
+  padding: 22px 20px 26px;
+  text-align: center;
+}
+
+.price {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #8a5f40;
+}
+
+.card-body h3 {
+  margin: 12px 0 18px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #3e2a1d;
+}
+
+.control-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.qty-button {
+  --background: #f0d4b8;
+  --color: #422814;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  min-width: 38px;
+}
+
+.qty-count {
+  min-width: 38px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #422814;
+}
+
+.ordenar-container {
+  padding: 0 28px 46px;
+}
+
+.ordenar-btn {
+  --background: #caa579;
+  --color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  height: 52px;
+  border-radius: 999px;
+}
+
+.ordenar-btn[disabled] {
+  --background: #e5d3c1;
+  --color: #8d6f57;
+}
+
+.footer-grid {
+  background: #3f2a1c;
+  color: #f4e4d7;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 28px;
+  padding: 40px 30px 56px;
+}
+
+.footer-column h3 {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-column p {
+  margin: 6px 0;
+  color: #e7d7c7;
+  line-height: 1.8;
+}
+
+.footer-label {
+  color: #d4b89a;
+  margin-top: 14px;
+  font-weight: 700;
+}
+
+.social-links {
+  display: flex;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+.social-links a {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f4e4d7;
+  transition: background 0.2s ease;
+}
+
+.social-links a:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.social-links ion-icon {
+  font-size: 22px;
+}
+
+@media (max-width: 950px) {
+  .topbar {
+    justify-content: center;
+    padding: 18px 20px;
+  }
+
+  .menu-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brand-panel,
+  .profile-icon {
+    justify-content: center;
+  }
+
+  .hero-copy h1 {
+    font-size: 2.4rem;
+  }
+
+  .productos-grid {
+    padding: 0 20px 36px;
+  }
+
+  .ordenar-container,
+  .footer-grid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

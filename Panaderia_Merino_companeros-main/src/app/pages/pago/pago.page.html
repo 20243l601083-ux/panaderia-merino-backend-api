@@ -1,0 +1,88 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-mark">PM</div>
+        <div>
+          <p class="brand-subtitle">Desde 1980</p>
+          <h1 class="brand-title">Panadería Merino</h1>
+        </div>
+      </div>
+
+      <nav class="top-nav" [class.open]="showMenu">
+        <a routerLink="/home" class="nav-link" (click)="closeMenu()">Inicio</a>
+        <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+        <a routerLink="/carrito" class="nav-link" (click)="closeMenu()">Carrito <span class="cart-badge" *ngIf="cartCount">{{ cartCount }}</span></a>
+        <a routerLink="/pago" class="nav-link active" (click)="closeMenu()">Pago</a>
+        <a routerLink="/seguimiento" class="nav-link" (click)="closeMenu()">Seguimiento</a>
+        <a routerLink="/conocenos" class="nav-link" (click)="closeMenu()">Conócenos</a>
+        <a routerLink="/contacto" class="nav-link" (click)="closeMenu()">Contáctanos</a>
+        <a routerLink="/perfil" class="nav-link" (click)="closeMenu()">Perfil</a>
+      </nav>
+    </header>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="pago-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Método de pago</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="payment-layout">
+    <!-- Formulario -->
+    <div class="form-side">
+      <h2>Selecciona tu método:</h2>
+      <div class="payment-methods">
+        <img src="/assets/imagenes/visa-logo.webp" alt="Visa" class="method" (click)="selectMethod('Visa')">
+        <img src="/assets/imagenes/mastercard-logo.png" alt="MasterCard" class="method" (click)="selectMethod('MasterCard')">
+        <img src="/assets/imagenes/bbva-logo.png" alt="BBVA" class="method" (click)="selectMethod('BBVA')">
+        <img src="/assets/imagenes/paypal-logo.png" alt="PayPal" class="method" (click)="selectMethod('PayPal')">
+        <img src="/assets/imagenes/banamex-logo.png" alt="Banamex" class="method" (click)="selectMethod('Banamex')">
+      </div>
+
+      <form class="card-form">
+        <ion-item>
+          <ion-label position="floating">Alias de la tarjeta</ion-label>
+          <ion-input [(ngModel)]="alias" name="alias"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Número de tarjeta</ion-label>
+          <ion-input [(ngModel)]="cardNumber" name="cardNumber"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">CVC</ion-label>
+          <ion-input [(ngModel)]="cvc" name="cvc"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Fecha de vencimiento</ion-label>
+          <ion-input [(ngModel)]="expiry" name="expiry"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Dirección de entrega</ion-label>
+          <ion-input [(ngModel)]="address" name="address"></ion-input>
+        </ion-item>
+
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+        <ion-button expand="block" class="pay-btn" [disabled]="processing" (click)="pagar()">
+          {{ processing ? 'Procesando...' : 'Pagar' }}
+        </ion-button>
+
+        <ion-button expand="block" class="pay-btn" [disabled]="processing" (click)="pagarConMercadoPago()">
+          {{ processing ? 'Procesando...' : 'Pagar con Mercado Pago' }}
+        </ion-button>
+      </form>
+    </div>
+
+    <!-- Ilustración -->
+    <div class="illustration-side">
+      <img src="/assets/imagenes/tarjetas-icono.png" alt="Tarjeta ilustrativa">
+    </div>
+  </div>
+</ion-content>

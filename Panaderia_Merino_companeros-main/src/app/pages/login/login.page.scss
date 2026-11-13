@@ -1,0 +1,79 @@
+ .login-content {
+  --background: #e97612;        /* fondo cálido */
+  display: flex;
+  justify-content: center;      /* centra horizontal */
+  align-items: center;          /* centra vertical */
+  height: 100vh;                /* ocupa toda la pantalla */
+  padding: 0;
+}
+
+.login-wrap {
+  width: 100%;
+  max-width: 480px;             /* tamaño cómodo */
+}
+
+.auth-card {
+  background: linear-gradient(180deg, #fbe0c9, #fbe0c9);
+  padding: 36px;
+  border-radius: 20px;
+  border: 1px solid rgba(139,90,43,0.12);
+  box-shadow: 0 16px 32px rgba(139,90,43,0.15);
+  text-align: center;
+}
+
+/* Icono PM */
+.brand-mark {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: linear-gradient(135deg,#b07b48,#8b5a2b);
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Inputs */
+ion-item {
+  --background: #fffaf6;
+  --color: #5a3e1b;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+ion-label {
+  color: #8b5a2b;
+}
+ion-input {
+  color: #5a3e1b;
+}
+
+/* Botones */
+.actions ion-button:first-child {
+  --background: linear-gradient(135deg, #b07b48, #8b5a2b);
+  --color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+.actions ion-button[fill="outline"] {
+  --border-color: #8b5a2b;
+  --color: #8b5a2b;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+/* Textos de abajo */
+.muted {
+  color: #6b4f2a;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+.error {
+  color: #b00020;
+  margin-top: 12px;
+  font-weight: 700;
+}

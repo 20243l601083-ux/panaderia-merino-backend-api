@@ -1,0 +1,42 @@
+.repartidor-page {
+
+  --background: #fff8f1;
+
+}
+
+
+.container {
+
+  padding: 30px;
+
+  display: flex;
+
+  justify-content: center;
+
+}
+
+
+ion-card {
+
+  width: 100%;
+  max-width: 500px;
+
+  border-radius: 20px;
+
+}
+
+
+ion-card-title {
+
+  color: #8b5a2b;
+
+}
+
+
+p {
+
+  color: #666;
+
+  line-height: 1.5;
+
+}

@@ -1,0 +1,380 @@
+<ion-content class="productos-page">
+
+  <header class="top-header">
+
+    <div class="brand">
+
+      <div class="brand-mark">
+        PM
+      </div>
+
+      <div>
+        <p class="brand-subtitle">
+          Desde 1980
+        </p>
+
+        <h1 class="brand-title">
+          Panadería Merino
+        </h1>
+      </div>
+
+    </div>
+
+
+    <nav class="top-nav" [class.open]="showMenu">
+
+      <a routerLink="/home" 
+         class="nav-link"
+         (click)="closeMenu()">
+        Inicio
+      </a>
+
+
+      <a routerLink="/productos"
+         class="nav-link active"
+         (click)="closeMenu()">
+        Productos
+      </a>
+
+
+      <a routerLink="/carrito"
+         class="nav-link"
+         (click)="closeMenu()">
+        Carrito
+      </a>
+
+
+      <a routerLink="/pago"
+         class="nav-link"
+         (click)="closeMenu()">
+        Pago
+      </a>
+
+
+      <a routerLink="/seguimiento"
+         class="nav-link"
+         (click)="closeMenu()">
+        Seguimiento
+      </a>
+
+
+      <a routerLink="/conocenos"
+         class="nav-link"
+         (click)="closeMenu()">
+        Conócenos
+      </a>
+
+
+      <a routerLink="/contacto"
+         class="nav-link"
+         (click)="closeMenu()">
+        Contáctanos
+      </a>
+
+
+      <a routerLink="/perfil"
+         class="nav-link"
+         (click)="closeMenu()">
+        Perfil
+      </a>
+
+
+    </nav>
+
+  </header>
+
+
+
+
+
+  <section class="hero-section">
+
+    <div class="hero-copy">
+
+      <p class="subtitle">
+        La mejor panadería artesanal
+      </p>
+
+
+      <h1>
+        Nuestros productos
+      </h1>
+
+
+      <p>
+        Descubre panes y dulces frescos con una presentación moderna,
+        cálida y elegante.
+      </p>
+
+
+    </div>
+
+  </section>
+
+
+
+
+
+
+
+  <section class="productos-grid">
+
+
+    <ion-card 
+      class="producto-card"
+      *ngFor="let producto of productos">
+
+
+      <div class="card-image">
+
+
+        <img
+          [src]="'assets/imagenes/' + producto.image"
+          [alt]="producto.name"
+        />
+
+
+      </div>
+
+
+
+
+
+      <div class="card-body">
+
+
+        <p class="price">
+
+          ${{ producto.price | number:'1.2-2' }}
+
+        </p>
+
+
+
+        <h3>
+
+          {{ producto.name }}
+
+        </h3>
+
+
+
+
+
+        <div class="control-row">
+
+
+
+          <ion-button
+
+            fill="solid"
+
+            size="small"
+
+            shape="round"
+
+            class="qty-button"
+
+            (click)="restar(producto)">
+
+            -
+
+          </ion-button>
+
+
+
+
+
+          <span class="qty-count">
+
+            {{ producto.qty }}
+
+          </span>
+
+
+
+
+
+          <ion-button
+
+            fill="solid"
+
+            size="small"
+
+            shape="round"
+
+            class="qty-button"
+
+            (click)="sumar(producto)">
+
+            +
+
+          </ion-button>
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+    </ion-card>
+
+
+
+  </section>
+
+
+
+
+
+
+
+  <div class="ordenar-container">
+
+
+    <ion-button
+
+      class="ordenar-btn"
+
+      expand="block"
+
+      [disabled]="totalItems === 0"
+
+      routerLink="/carrito">
+
+
+      {{ totalItems > 0 ? ('Ordenar (' + totalItems + ')') : 'Ordenar' }}
+
+
+    </ion-button>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <footer class="footer-grid">
+
+
+    <div class="footer-column">
+
+
+      <h3>
+        Panadería Merino
+      </h3>
+
+
+      <p class="footer-label">
+        Dirección
+      </p>
+
+
+      <p>
+        Coscomatepec, Ver.
+      </p>
+
+
+      <p>
+        Calle 4 de Octubre
+      </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="footer-column">
+
+
+      <h3>
+        Contacto
+      </h3>
+
+
+      <p class="footer-label">
+        Teléfono
+      </p>
+
+
+      <p>
+        271 260 73 85
+      </p>
+
+
+      <p class="footer-label">
+        Email
+      </p>
+
+
+      <p>
+        MerinoPanaderia@gmail.com
+      </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="footer-column">
+
+
+      <h3>
+        Redes
+      </h3>
+
+
+      <div class="social-links">
+
+
+        <a href="#"
+           aria-label="TikTok">
+
+          <ion-icon name="logo-tiktok"></ion-icon>
+
+        </a>
+
+
+
+        <a href="#"
+           aria-label="Facebook">
+
+          <ion-icon name="logo-facebook"></ion-icon>
+
+        </a>
+
+
+
+
+        <a href="#"
+           aria-label="Instagram">
+
+          <ion-icon name="logo-instagram"></ion-icon>
+
+        </a>
+
+
+      </div>
+
+
+    </div>
+
+
+
+  </footer>
+
+
+
+</ion-content>

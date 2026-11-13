@@ -1,0 +1,88 @@
+<ion-content [fullscreen]="false" class="carrito-content">
+  <header class="top-header">
+    <div class="brand">
+      <button type="button" class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
+      <div class="brand-mark">PM</div>
+      <div>
+        <p class="brand-subtitle">Desde 1980</p>
+        <h1 class="brand-title">Panadería Merino</h1>
+      </div>
+    </div>
+
+    <nav class="top-nav" [class.open]="showMenu">
+      <a routerLink="/home" class="nav-link" (click)="closeMenu()">Inicio</a>
+      <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+      <a routerLink="/carrito" class="nav-link active" (click)="closeMenu()">Carrito</a>
+      <a routerLink="/pago" class="nav-link" (click)="closeMenu()">Pago</a>
+      <a routerLink="/seguimiento" class="nav-link" (click)="closeMenu()">Seguimiento</a>
+      <a routerLink="/conocenos" class="nav-link" (click)="closeMenu()">Conócenos</a>
+      <a routerLink="/contacto" class="nav-link" (click)="closeMenu()">Contáctanos</a>
+      <a routerLink="/perfil" class="nav-link" (click)="closeMenu()">Perfil</a>
+    </nav>
+  </header>
+
+  <div class="page-wrap">
+    <section class="hero-summary">
+      <p class="hero-label">Tu pedido</p>
+      <h1>Revisa y ajusta antes de pagar</h1>
+      <p>Encuentra tus productos seleccionados y confirma tu compra con estilo.</p>
+    </section>
+
+    <ng-container *ngIf="items.length > 0; else emptyState">
+      <div class="cart-grid">
+        <div class="cart-list">
+          <ion-card class="cart-card" *ngFor="let item of items">
+            <div class="item-card-row">
+              <div class="item-image">
+                <img [src]="item.image" [alt]="item.name" />
+              </div>
+              <div class="item-details">
+                <h3>{{ item.name }}</h3>
+                <p class="item-price">$ {{ item.price | number:'1.2-2' }} c/u</p>
+              </div>
+            </div>
+            <div class="item-controls">
+              <ion-button fill="solid" size="small" class="qty-btn" (click)="decrease(item)">-</ion-button>
+              <span class="qty-count">{{ item.qty }}</span>
+              <ion-button fill="solid" size="small" class="qty-btn" (click)="increase(item)">+</ion-button>
+            </div>
+            <div class="item-total">$ {{ (item.price * item.qty) | number:'1.2-2' }}</div>
+          </ion-card>
+        </div>
+
+        <ion-card class="summary-card">
+          <div class="summary-head">
+            <span>Resumen</span>
+            <strong>$ {{ grandTotal | number:'1.2-2' }}</strong>
+          </div>
+          <div class="summary-copy">
+            <p>Confirma los productos y cantidades antes de continuar al pago.</p>
+          </div>
+          <div class="summary-table">
+            <div class="row header-row">
+              <span>Producto</span>
+              <span>Cant.</span>
+              <span>Total</span>
+            </div>
+            <div class="row item-row" *ngFor="let item of items">
+              <span>{{ item.name }}</span>
+              <span>{{ item.qty }}</span>
+              <span>$ {{ (item.price * item.qty) | number:'1.2-2' }}</span>
+            </div>
+          </div>
+          <ion-button expand="block" class="pay-btn" [disabled]="grandTotal === 0" routerLink="/pago">
+            Pagar ahora
+          </ion-button>
+        </ion-card>
+      </div>
+    </ng-container>
+
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <h2>Tu carrito está vacío</h2>
+        <p>Agrega productos desde la sección de productos para poder ordenarlos.</p>
+        <ion-button routerLink="/productos">Ver productos</ion-button>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

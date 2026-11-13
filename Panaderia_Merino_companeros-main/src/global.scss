@@ -1,0 +1,246 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+
+/* Leaflet mapa */
+@import "leaflet/dist/leaflet.css";
+
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+
+.admin-section-page {
+  --background: linear-gradient(180deg, #fff8f1 0%, #f8e7d9 100%);
+}
+
+.admin-section-page .section-shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+}
+
+.admin-section-page .dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.admin-section-page .left-nav-card {
+  background: linear-gradient(180deg, #fff8f1 0%, #f7ebde 100%);
+  border: 1px solid rgba(217, 165, 95, 0.2);
+  border-radius: 24px;
+  padding: 18px;
+  box-shadow: 0 16px 36px rgba(107, 68, 34, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: calc(100vh - 120px);
+  position: sticky;
+  top: 16px;
+}
+
+.admin-section-page .sidebar-logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0 4px;
+}
+
+.admin-section-page .sidebar-logo-box img,
+.admin-section-page .sidebar-image-box img {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.admin-section-page .sidebar-logo-box img {
+  max-width: 140px;
+}
+
+.admin-section-page .sidebar-image-box {
+  margin-top: auto;
+}
+
+.admin-section-page .sidebar-image-box img {
+  min-height: 140px;
+}
+
+.admin-section-page .left-nav-card h3 {
+  margin: 0;
+  color: #8b5a2b;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.admin-section-page ion-list {
+  background: transparent;
+  padding: 0;
+}
+
+.admin-section-page .left-nav-item {
+  --background: transparent;
+  --background-hover: rgba(217, 165, 95, 0.14);
+  --border-radius: 14px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+}
+
+.admin-section-page .left-nav-item ion-label {
+  color: #3e2311;
+  font-weight: 600;
+}
+
+.admin-section-page .left-nav-item.active-link {
+  --background: #8b5a2b;
+}
+
+.admin-section-page .left-nav-item.active-link ion-label {
+  color: #fff;
+}
+
+.admin-section-page .content-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-section-page .hero-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 22px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 36px rgba(107, 68, 34, 0.12);
+  border: 1px solid rgba(217, 165, 95, 0.16);
+}
+
+.admin-section-page .eyebrow {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #d9a55f;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.admin-section-page .hero-card h1 {
+  margin: 0 0 6px;
+  color: #8b5a2b;
+  font-size: 1.7rem;
+}
+
+.admin-section-page .hero-card p {
+  margin: 0;
+  color: #7c5c42;
+}
+
+.admin-section-page .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.admin-section-page .stat-card,
+.admin-section-page .panel-card {
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 30px rgba(107, 68, 34, 0.1);
+  border: 1px solid rgba(217, 165, 95, 0.16);
+}
+
+.admin-section-page .stat-card ion-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-section-page .stat-card h2 {
+  margin: 0;
+  color: #8b5a2b;
+  font-size: 1.5rem;
+}
+
+.admin-section-page .stat-label {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #7c5c42;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-section-page .stat-card span,
+.admin-section-page .muted {
+  color: #7c5c42;
+  font-size: 0.9rem;
+}
+
+.admin-section-page .panel-card ion-card-title {
+  color: #8b5a2b;
+}
+
+.admin-section-page .panel-card ion-card-content {
+  padding: 14px 16px 16px;
+}
+
+@media (max-width: 980px) {
+  .admin-section-page .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-section-page .left-nav-card {
+    min-height: auto;
+    position: static;
+  }
+}
+
+@media (max-width: 680px) {
+  .admin-section-page .section-shell {
+    padding: 14px 12px 24px;
+  }
+
+  .admin-section-page .hero-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-section-page .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,431 @@
+<ion-content class="admin-section-page">
+
+  <div class="section-shell">
+
+    <div class="dashboard-grid">
+
+      <!-- MENÚ LATERAL -->
+      <aside class="left-nav-card">
+
+        <div class="sidebar-logo-box">
+          <img
+            src="assets/imagenes/logo1.jpeg"
+            alt="Logo Panadería">
+        </div>
+
+        <h3>Secciones</h3>
+
+        <ion-list>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/dashboard"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Inicio</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/clientes"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Clientes</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/pedidos"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Pedidos</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/inventario"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Inventario</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/empleados"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Empleados</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/repartidores"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Repartidores</ion-label>
+          </ion-item>
+
+          <ion-item
+            class="left-nav-item"
+            routerLink="/admin/gastos"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <ion-label>Gastos</ion-label>
+          </ion-item>
+
+        </ion-list>
+
+      </aside>
+
+
+      <!-- CONTENIDO PRINCIPAL -->
+      <div class="content-stack">
+
+        <!-- ENCABEZADO -->
+        <section class="hero-card">
+
+          <div>
+
+            <p class="eyebrow">
+              Panel administrativo
+            </p>
+
+            <h1>
+              Empleados
+            </h1>
+
+            <p>
+              Gestiona el equipo interno de la panadería.
+            </p>
+
+          </div>
+
+          <ion-button
+            color="primary"
+            (click)="openCreate()">
+
+            + Agregar Empleado
+
+          </ion-button>
+
+        </section>
+
+
+        <!-- ESTADÍSTICAS -->
+        <div class="stats-grid">
+
+          <ion-card
+            class="stat-card"
+            *ngFor="let item of summary">
+
+            <ion-card-content>
+
+              <p class="stat-label">
+                {{ item.label }}
+              </p>
+
+              <h2>
+                {{ item.value }}
+              </h2>
+
+              <span>
+                {{ item.hint }}
+              </span>
+
+            </ion-card-content>
+
+          </ion-card>
+
+        </div>
+
+
+        <!-- TABLA DE EMPLEADOS -->
+        <ion-card class="panel-card">
+
+          <ion-card-header class="table-header">
+
+            <ion-card-title>
+              Lista de empleados
+            </ion-card-title>
+
+            <ion-searchbar
+              [(ngModel)]="searchText"
+              placeholder="Buscar..."
+              show-clear-button="focus">
+            </ion-searchbar>
+
+          </ion-card-header>
+
+
+          <ion-card-content>
+
+            <div class="table-wrap">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+
+                    <th>ID</th>
+
+                    <th>Nombre</th>
+
+                    <th>Puesto</th>
+
+                    <th>Salario</th>
+
+                    <th>Fecha contratación</th>
+
+                    <th>Teléfono</th>
+
+                    <th>Acciones</th>
+
+                  </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                  <tr
+                    *ngFor="let empleado of filteredEmpleados">
+
+                    <!-- ID -->
+                    <td>
+                      #{{ empleado.id_empleado }}
+                    </td>
+
+
+                    <!-- NOMBRE -->
+                    <td>
+                      {{ empleado.nombre || 'Sin nombre' }}
+                    </td>
+
+
+                    <!-- PUESTO -->
+                    <td>
+                      {{ empleado.puesto || 'Sin puesto' }}
+                    </td>
+
+
+                    <!-- SALARIO -->
+                    <td>
+                      ${{ empleado.salario || 0 }}
+                    </td>
+
+
+                    <!-- FECHA -->
+                    <td>
+                      {{ empleado.fecha_contratacion || 'Sin fecha' }}
+                    </td>
+
+
+                    <!-- TELÉFONO -->
+                    <td>
+                      {{ empleado.telefono || 'Sin teléfono' }}
+                    </td>
+
+
+                    <!-- ACCIONES -->
+                    <td>
+
+                      <ion-button
+                        size="small"
+                        fill="clear"
+                        color="primary"
+                        (click)="openEdit(empleado)">
+
+                        Editar
+
+                      </ion-button>
+
+
+                      <ion-button
+                        size="small"
+                        fill="clear"
+                        color="danger"
+                        (click)="deleteEmpleado(empleado)">
+
+                        Eliminar
+
+                      </ion-button>
+
+                    </td>
+
+                  </tr>
+
+
+                  <!-- SIN RESULTADOS -->
+                  <tr
+                    *ngIf="filteredEmpleados.length === 0">
+
+                    <td
+                      colspan="7"
+                      class="empty-row">
+
+                      No hay empleados registrados.
+
+                    </td>
+
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </ion-card-content>
+
+        </ion-card>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- MODAL AGREGAR / EDITAR -->
+  <ion-modal
+    [isOpen]="isModalOpen"
+    (didDismiss)="isModalOpen = false">
+
+    <ng-template>
+
+      <ion-header>
+
+        <ion-toolbar>
+
+          <ion-title>
+            {{ editingIndex === null
+              ? 'Agregar empleado'
+              : 'Editar empleado' }}
+          </ion-title>
+
+          <ion-buttons slot="end">
+
+            <ion-button
+              (click)="isModalOpen = false">
+
+              Cerrar
+
+            </ion-button>
+
+          </ion-buttons>
+
+        </ion-toolbar>
+
+      </ion-header>
+
+
+      <ion-content class="ion-padding">
+
+
+        <!-- NOMBRE -->
+        <ion-item>
+
+          <ion-label position="stacked">
+            Nombre
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="form.nombre"
+            name="nombre"
+            placeholder="Nombre del empleado">
+          </ion-input>
+
+        </ion-item>
+
+
+        <!-- PUESTO -->
+        <ion-item>
+
+          <ion-label position="stacked">
+            Puesto
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="form.puesto"
+            name="puesto"
+            placeholder="Ej. Panadero">
+          </ion-input>
+
+        </ion-item>
+
+
+        <!-- SALARIO -->
+        <ion-item>
+
+          <ion-label position="stacked">
+            Salario
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="form.salario"
+            name="salario"
+            type="number"
+            placeholder="Ej. 5000">
+          </ion-input>
+
+        </ion-item>
+
+
+        <!-- FECHA DE CONTRATACIÓN -->
+        <ion-item>
+
+          <ion-label position="stacked">
+            Fecha contratación
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="form.fecha_contratacion"
+            name="fecha_contratacion"
+            type="date">
+          </ion-input>
+
+        </ion-item>
+
+
+        <!-- TELÉFONO -->
+        <ion-item>
+
+          <ion-label position="stacked">
+            Teléfono
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="form.telefono"
+            name="telefono"
+            type="tel"
+            placeholder="Número telefónico">
+          </ion-input>
+
+        </ion-item>
+
+
+        <!-- BOTÓN GUARDAR -->
+        <div class="modal-actions">
+
+          <ion-button
+            expand="block"
+            color="primary"
+            (click)="saveEmpleado()">
+
+            {{ editingIndex === null
+              ? 'Guardar empleado'
+              : 'Guardar cambios' }}
+
+          </ion-button>
+
+        </div>
+
+
+      </ion-content>
+
+    </ng-template>
+
+  </ion-modal>
+
+</ion-content>

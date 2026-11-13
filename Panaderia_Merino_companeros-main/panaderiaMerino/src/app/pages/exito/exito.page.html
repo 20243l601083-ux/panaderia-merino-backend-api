@@ -1,0 +1,43 @@
+<ion-content class="exito-content">
+  <header class="top-header">
+    <div class="brand">
+      <button type="button" class="menu-toggle" (click)="toggleMenu()" aria-label="Abrir menú">☰</button>
+      <div class="brand-mark">PM</div>
+      <div>
+        <p class="brand-subtitle">Desde 1980</p>
+        <h1 class="brand-title">Panadería Merino</h1>
+      </div>
+    </div>
+
+    <nav class="top-nav" [class.open]="showMenu">
+      <a routerLink="/home" class="nav-link" (click)="closeMenu()">Inicio</a>
+      <a routerLink="/productos" class="nav-link" (click)="closeMenu()">Productos</a>
+      <a routerLink="/carrito" class="nav-link" (click)="closeMenu()">Carrito</a>
+      <a routerLink="/pago" class="nav-link" (click)="closeMenu()">Pago</a>
+      <a routerLink="/seguimiento" class="nav-link" (click)="closeMenu()">Seguimiento</a>
+      <a routerLink="/conocenos" class="nav-link" (click)="closeMenu()">Conócenos</a>
+      <a routerLink="/contacto" class="nav-link" (click)="closeMenu()">Contáctanos</a>
+      <a routerLink="/perfil" class="nav-link" (click)="closeMenu()">Perfil</a>
+    </nav>
+  </header>
+
+  <div class="page-wrap">
+    <section class="exito-panel">
+      <div class="success-card">
+        <div class="success-tag">Pago realizado con éxito</div>
+        <h1>¡Gracias por tu compra{{ customerName ? ', ' + customerName : '' }}!</h1>
+        <p class="success-text">Tu pago se procesó correctamente y tu pedido está en camino.</p>
+
+        <div class="total-box">
+          <span>Total pagado</span>
+          <strong>{{ total | currency:'USD':'symbol' }}</strong>
+        </div>
+
+        <p class="thanks-note">Gracias por confiar en Panadería Merino. Esperamos que disfrutes tu pedido.</p>
+        <ion-button expand="block" class="productos-btn" routerLink="/productos">
+          VER MÁS PRODUCTOS
+        </ion-button>
+      </div>
+    </section>
+  </div>
+</ion-content>

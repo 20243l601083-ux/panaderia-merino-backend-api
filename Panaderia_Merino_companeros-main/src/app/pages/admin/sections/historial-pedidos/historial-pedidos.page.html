@@ -1,0 +1,51 @@
+<ion-content class="admin-section-page">
+  <div class="section-shell">
+    <section class="hero-card">
+      <div>
+        <p class="eyebrow">Panel administrativo</p>
+        <h1>Historial de pedidos</h1>
+        <p>Consulta el registro de ventas y el estado reciente de cada pedido.</p>
+      </div>
+      <ion-button color="primary" (click)="openQuickAction()">Ver historial</ion-button>
+    </section>
+
+    <div class="stats-grid">
+      <ion-card class="stat-card" *ngFor="let item of summary">
+        <ion-card-content>
+          <p class="stat-label">{{ item.label }}</p>
+          <h2>{{ item.value }}</h2>
+          <span>{{ item.hint }}</span>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="content-grid">
+      <ion-card class="panel-card">
+        <ion-card-header>
+          <ion-card-title>Últimos pedidos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="list-item" *ngFor="let item of history">
+            <div>
+              <strong>{{ item.client }}</strong>
+              <p class="muted">{{ item.detail }}</p>
+            </div>
+            <span class="chip">{{ item.value }}</span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="panel-card">
+        <ion-card-header>
+          <ion-card-title>Resumen operativo</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="list-item" *ngFor="let item of highlights">
+            <span>{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
